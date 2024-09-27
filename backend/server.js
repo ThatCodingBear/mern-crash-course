@@ -3,8 +3,10 @@ import dotenv from "dotenv";
 import {connectDB} from "./config/db.js"
 import productRoutes from "./routes/product.route.js"
 
-const app = express();
 dotenv.config();
+
+const app = express();
+const PORT = process.env.PORT
 
 //this is middleware that allows us to parse the req.body and convert it to a JSON object
 //It also makes the data available (after parsing) to the req.body object
@@ -19,8 +21,8 @@ app.use("/api/products",productRoutes)
 
 //The console.log will appear in the terminal.
 //spent 10 min trying to find the message in the dev tools log
-app.listen(5000, () =>{
+app.listen(PORT, () =>{
     connectDB();
-    console.log("Server is now running on http://localhost:5000")
+    console.log("Server is now running on http://localhost:" + PORT)
 })
 
